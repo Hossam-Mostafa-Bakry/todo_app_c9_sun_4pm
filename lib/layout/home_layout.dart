@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_c9_sun_4pm/pages/home/home_view.dart';
 
+import '../pages/home/widgets/bottom_sheet_widget.dart';
 import '../pages/settings/settings_view.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -27,10 +28,9 @@ class _HomeLayoutState extends State<HomeLayout> {
         radius: 32,
         child: FloatingActionButton(
           onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              builder: (context) => Container(),
-            );
+
+            showADdTaskBottomSheet();
+
           },
           child: Icon(
             Icons.add,
@@ -68,6 +68,19 @@ class _HomeLayoutState extends State<HomeLayout> {
           ],
         ),
       ),
+    );
+  }
+
+  void showADdTaskBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        )
+      ),
+      builder: (context) => BottomSheetWidget(),
     );
   }
 }

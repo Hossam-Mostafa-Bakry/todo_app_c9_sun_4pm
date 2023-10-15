@@ -12,8 +12,6 @@ class ApplicationTheme {
       seedColor: primaryColor,
       onPrimary: primaryColor,
       onSecondary: const Color(0xFFDFECDB),
-      primary: const Color(0xFFB7935F),
-      background: Colors.white,
     ),
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(color: Colors.black),

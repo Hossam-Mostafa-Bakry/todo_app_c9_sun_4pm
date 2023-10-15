@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo_app_c9_sun_4pm/core/network_layer/firestore_utils.dart';
+import 'package:todo_app_c9_sun_4pm/model/task_model.dart';
 
 class TaskItemWidget extends StatelessWidget {
-  const TaskItemWidget({super.key});
+  final TaskModel taskModel;
+  const TaskItemWidget({super.key, required this.taskModel});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,9 @@ class TaskItemWidget extends StatelessWidget {
           motion: const BehindMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (context) async {
+                await FirestoreUtils.deleteDataFromFirestore(taskModel);
+              },
               backgroundColor: const Color(0xFFEC4B4B),
               borderRadius: BorderRadius.circular(15.0),
               foregroundColor: Colors.white,
@@ -77,11 +82,11 @@ class TaskItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Play basket ball",
+                      taskModel.title,
                       style: theme.textTheme.bodyLarge,
                     ),
                     Text(
-                      "go to club with your friends go to club with your friends go to club with your friends",
+                      taskModel.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.bodyMedium!.copyWith(height: 1.1),
